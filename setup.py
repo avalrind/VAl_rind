@@ -1,7 +1,5 @@
 import setuptools
 
-with open(r'C:\Users\computer\Downloads\VARIND\VAlrind\README.md' , 'r') as readme : readme = readme.read()
-
 setuptools.setup(
     name = 'VAlrind' , 
     version = '0.0.1' , 
