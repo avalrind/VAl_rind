@@ -13,8 +13,8 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License' , 
         'Operating System :: OS Independent' 
     ] , 
-    python_requireds = '>= 3.6' , 
-    py_module = ['val_rind'] , 
+    python_requires = '>= 3.6' , 
+    py_modules = ['val_rind'] , 
     package_dir = {'' : 'VALrind/src'} , 
-    install_rquires = ['numpy']
+    install_requires = ['numpy']
 )
