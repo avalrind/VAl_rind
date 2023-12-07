@@ -5,7 +5,7 @@ setuptools.setup(
     version = '0.0.1' , 
     author = 'AVal' , 
     description = 'Python Library for Training Nerual Networks' , 
-    long_description = readme , 
+    long_description = '' , 
     long_description_content_type = 'text/markdown' , 
     packages = setuptools.find_packages() , 
     classifiers = [
