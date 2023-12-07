@@ -15,6 +15,6 @@ setuptools.setup(
     ] , 
     python_requires = '>= 3.6' , 
     py_modules = ['val_rind'] , 
-    package_dir = {'' : 'VAlrind/src'} , 
+    package_dir = {'' : 'VAl_rind/src'} , 
     install_requires = ['numpy']
 )
