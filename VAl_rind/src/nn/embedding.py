@@ -3,7 +3,20 @@ import numpy as np
 
 class embedding(Module): 
 
-    def __init__(self , in_feats , out_feats): 
+    '''
+    Embedding class for the Transformer model. Inherits from the Module class
+
+    Parameters
+
+        1) in_feats : Input features
+        2) out_feats : Output features
+    '''
+
+    def __init__(self , in_feats , out_feats):
+
+        '''
+        Constructor for the Embedding class
+        ''' 
         
         self.in_feats = in_feats
         self.out_feats = out_feats
@@ -12,6 +25,14 @@ class embedding(Module):
         self.parameters = Parameters(self.feats)
 
     def forward(self , inps):
+
+        '''
+        Forward pass for the Embedding class
+
+        Parameters
+
+            1) inps : Inputs to the Embedding class
+        '''
 
         if len(inps.shape) == 1 : return_val = np.vstack([
             self.feats[val] for val in inps])
