@@ -3,8 +3,19 @@ import val_rind , Parameters , Module
 import numpy as np
 
 class linear(Module): 
+    '''
+    Linear layer for the Transformer model. Inherits from the Module class
+
+    Parameters
+
+        1) in_feats : Number of input features
+        2) out_feats : Number of output features
+    '''
 
     def __init__(self , in_feats , out_feats):
+        '''
+        Constructor for the linear class
+        '''
 
         self.in_feats = in_feats
         self.out_feats = out_feats
@@ -18,6 +29,13 @@ class linear(Module):
         self.params = [Parameters(val) for val in self.params]
         
     def forward(self , inps):
+        '''
+        Forward pass for the linear class
+
+        Parameters
+
+            1) inps : Inputs to the linear layer
+        '''
 
         if len(inps.shape) == 1 : # 1D
             return_val = val_rind.matmul(self.in_col , inps , 
