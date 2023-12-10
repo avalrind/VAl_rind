@@ -3,8 +3,22 @@ import embedding , Encoder_Block , val_rind , Module
 import numpy as np 
 
 class Encoder (Module):
+    '''
+    Encoder class for the Transformer model. Inherits from the Module class
+
+    Parameters
+
+        1) num_blocks : Number of Encoder Blocks
+        2) vocab_size : Size of the vocabulary
+        3) max_seq_len : Maximum sequence length
+        4) model_dim : Model dimension
+    '''
 
     def __init__(self , num_blocks , vocab_size , max_seq_len , model_dim):
+
+        '''
+        Constructor for the Encoder class
+        '''
 
         self.num_blocks = num_blocks
         self.vocab_size = vocab_size
@@ -26,6 +40,15 @@ class Encoder (Module):
             self.parameters.append(obj.parameters)
 
     def forward(self , inps , mask = None):
+
+        '''
+        Forward pass for the Encoder class
+
+        Parameters
+
+            1) inps : Inputs to the Encoder
+            2) mask : Mask for the inputs
+        '''
 
         if len(inps.shape) == 1: 
 
