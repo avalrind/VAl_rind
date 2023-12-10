@@ -1,10 +1,29 @@
-class gnn_model : 
+from nn import Module
+
+class gnn_model(Module) : 
+    '''
+    Trainer Class for Graph Neural Network model
+
+    Parameters
+
+        1) layers : Layers of the model
+    '''
 
     def __init__(self , layers) : 
+        '''
+        Constructor for the gnn_model class
+        '''
 
         self.layer = layers
 
     def forward(self , inps) :
+        '''
+        Forward pass for the gnn_model class
+
+        Parameters
+
+            1) inps : Inputs to the model
+        '''
 
         for layer in self.layers : 
 
