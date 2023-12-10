@@ -3,9 +3,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 import warnings
 
-layer_norm = lambda value : (value - value.min()) / ((value.max() - value.min()))
+def layer_norm(value) :
+    '''
+        Applies Layer Normalization to the given value
+
+        Parameters
+
+            1) value : The value to be normalized
+    '''
+
+    return (value - value.min()) / (value.max() - value.min()) + 1e-10
+
 
 def matmul(f_row , f_col , s_row , s_col , funcs = None):
+    '''
+        Multiplies two matrices and returns the resultant matrix
+
+        Parameters
+
+            1) f_row : The row of the first matrix
+            2) f_col : The column of the first matrix
+            3) s_row : The row of the second matrix
+            4) s_col : The column of the second matrix
+            5) funcs : The functions to be used for multiplication
+    '''
     
     if len(f_col) != len(s_row) : raise ValueError(f'Cannot multiply array with dimensions {len(f_row)}x{len(f_col)} , {len(s_row)}x{len(s_col)}')
     if funcs :
@@ -17,6 +38,7 @@ def matmul(f_row , f_col , s_row , s_col , funcs = None):
             funcs += [lambda x , y : x * y] * (len(s_col) - len(funcs))
         
         elif len(funcs) > len(f_col) : raise ValueError(f'{len(funcs)} > {len(f_col)} : Length of funcs should be <= Length of Matrix')
+    
     else : funcs = [lambda x , y : x * y] * len(s_col)
             
     val = sum(list(map(
@@ -29,6 +51,14 @@ def matmul(f_row , f_col , s_row , s_col , funcs = None):
     return row , col
 
 def matrix_maker(row , col):
+    '''
+        Creates a matrix of given dimensions
+
+        Parameters
+
+            1) row : The row of the matrix
+            2) col : The column of the matrix
+    '''
 
     value = np.empty(shape = (len(row) , len(col)))
 
@@ -40,17 +70,82 @@ def matrix_maker(row , col):
 
     return value
 
-padding = lambda val , padding_length : np.concatenate([val , 
-                                                        np.zeros(shape = padding_length - len(val) , 
-                                                                 dtype = np.int8)])
+def padding(value , padding_length):
+    '''
+        Pads the given value with zeros
 
-sigmoid = lambda val : (1) / (1 + np.exp(-val))
+        Parameters
 
-distance = lambda node_1 , node_2 : abs(
-    (node_1.weight + node_1.bias) - (node_2.weight + node_2.bias)
-)
+            1) value : The value to be padded
+            2) padding_length : The length of padding
+    '''
+
+    return np.concatenate([value , np.zeros(shape = padding_length - len(value) , dtype = np.int8)])
+
+def relu(value):
+    '''
+        Applies ReLU activation function to the given value
+
+        Parameters
+
+            1) value : The value to be activated
+    '''
+
+    return np.maximum(0 , value)
+
+def softmax(value):
+    '''
+        Applies Softmax activation function to the given value
+
+        Parameters
+
+            1) value : The value to be activated
+    '''
+
+    return np.exp(value) / np.sum(np.exp(value))
+
+def tanh(value):
+    '''
+        Applies Tanh activation function to the given value
+
+        Parameters
+
+            1) value : The value to be activated
+    '''
+
+    return np.tanh(value)
+
+def sigmoid(value):
+    '''
+        Applies Sigmoid activation function to the given value
+
+        Parameters
+
+            1) value : The value to be activated
+    '''
+
+    return (1) / (1 + np.exp(-value))
+
+def distance(node_1 , node_2):
+    '''
+        Calculates the distance between two nodes
+
+        Parameters
+
+            1) node_1 : The first node
+            2) node_2 : The second node
+    '''
+
+    return abs((node_1.weight + node_1.bias) - (node_2.weight + node_2.bias))
 
 def visualize_graph(nodes : list) : 
+    '''
+        Visualizes the given graph
+
+        Parameters
+
+            1) nodes : The nodes of the graph
+    '''
 
     g = nx.Graph()
 
