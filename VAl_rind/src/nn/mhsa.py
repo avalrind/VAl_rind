@@ -3,8 +3,18 @@ import numpy as np
 import linear , Module
 
 class mhsa(Module) :
+    '''
+    Multi-Head Self Attention class for the Transformer model. Inherits from the Module class
+
+    Parameters
+
+        1) vocab_size : Size of the vocabulary
+    '''
 
     def __init__(self , vocab_size):
+        '''
+        Constructor for the mhsa class
+        '''
 
         self.vocab_size = vocab_size
 
@@ -17,6 +27,15 @@ class mhsa(Module) :
                            [self.values.in_col , self.values.out_col]]
         
     def forward(self , query , key , value , mask = None):
+        '''
+        Forward pass for the mhsa class
+
+        Parameters
+
+            1) query : Query for the mhsa
+            2) key : Key for the mhsa
+            3) value : Value for the mhsa
+        '''
 
         query_output = self.queries.forward(query)
         key_output = self.keys.forward(key)
